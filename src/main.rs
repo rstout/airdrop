@@ -33,14 +33,12 @@ fn main() {
     let mut output_file = fs::File::create(&output_file_name)
         .expect("Unable to create/open output file");
 
-    output_file.write_all(b"airdrop_neurons:\n").unwrap();
-
     let stake_e8s = args.stake_e8s;
 
     for airdrop_id in airdrop_ids {
-        output_file.write_all(format!("  - controller: {}\n", airdrop_id).as_bytes()).unwrap();
-        output_file.write_all(format!("    stake_e8s: {}\n", stake_e8s).as_bytes()).unwrap();
-        output_file.write_all(b"    memo: 0\n").unwrap();
-        output_file.write_all(b"    dissolve_delay_seconds: 0\n").unwrap();
+        output_file.write_all(format!("        - controller: {}\n", airdrop_id).as_bytes()).unwrap();
+        output_file.write_all(format!("          stake_e8s: {}\n", stake_e8s).as_bytes()).unwrap();
+        output_file.write_all(b"          memo: 0\n").unwrap();
+        output_file.write_all(b"          dissolve_delay_seconds: 0\n").unwrap();
     }
 }
